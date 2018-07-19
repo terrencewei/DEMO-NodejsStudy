@@ -1,5 +1,7 @@
 'use strict'
 
+const path = require('path')
+
 // had enabled by egg
 // exports.static = true;
 exports.nunjucks = {
@@ -10,4 +12,9 @@ exports.nunjucks = {
 exports.redis = {
   enable: true,
   package: 'egg-redis'
+}
+
+exports.kafkaNodeBasic = {
+  enable: true,
+  path: path.join(__dirname, '../lib/plugin/egg-kafka-node-basic')
 }

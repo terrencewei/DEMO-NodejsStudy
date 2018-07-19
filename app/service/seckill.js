@@ -1,8 +1,5 @@
 // app/service/seckill.js
 const Service = require('egg').Service
-// kafka-node
-const kafka = require('kafka-node')
-const producer = new kafka.Producer(new kafka.Client('localhost:2181'))
 
 class SeckillService extends Service {
   async buy () {
@@ -24,32 +21,14 @@ class SeckillService extends Service {
       if (results != null) {
         // means no conflict, counter has been decreased
         // then produce a message via kafka to real decrease the stock in mysql DB
-        await this.sendKafka()
+        const res = await this.app.kafkaNodeBasic.sendAsync()
+        console.log(res)
         return results[0][1]
       } else {
         const res = await this.consumeStockInRedis(redis)
         return res
       }
     }
-  }
-
-  sendKafka () {
-    var payload = [
-      {
-        topic: 'CAR_NUMBER',
-        messages: 'buy 1 car',
-        partition: 0
-      }
-    ]
-
-    producer.send(payload, function (err, data) {
-      if (err != null) {
-        console.log('Error occurs:')
-        console.log(err)
-        throw err
-      }
-      console.log(data)
-    })
   }
 }
 

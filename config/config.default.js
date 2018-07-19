@@ -26,5 +26,19 @@ module.exports = appInfo => {
     }
   }
 
+  config.kafkaNodeBasic = {
+    kafkaHost: '127.0.0.1:9092',
+    producer: {
+      payloads: [
+        {
+          topic: 'CAR_NUMBER',
+          messages: 'buy 1 car',
+          partition: 0
+        }
+      ]
+    },
+    app: true
+  }
+
   return config
 }
