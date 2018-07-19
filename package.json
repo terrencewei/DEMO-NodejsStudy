@@ -6,13 +6,14 @@
   "dependencies": {
     "egg": "^2.2.1",
     "egg-kafka": "^1.2.6",
-    "egg-kafkajs": "^0.0.6",
     "egg-mysql": "^3.0.0",
     "egg-redis": "^2.0.0",
     "egg-scripts": "^2.5.0",
     "egg-view-nunjucks": "^2.2.0",
+    "kafka-node": "^2.6.1",
     "lint": "^1.1.2",
     "moment": "^2.22.2",
+    "mysql": "^2.16.0",
     "redis": "^2.8.0"
   },
   "devDependencies": {
