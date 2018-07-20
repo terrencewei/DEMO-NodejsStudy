@@ -1,41 +1,25 @@
 # egg-kafka-wrapper
 
-[![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
-[![Test coverage][codecov-image]][codecov-url]
-[![David deps][david-image]][david-url]
-[![Known Vulnerabilities][snyk-image]][snyk-url]
-[![npm download][download-image]][download-url]
-
-[npm-image]: https://img.shields.io/npm/v/egg-kafka-wrapper.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/egg-kafka-wrapper
-[travis-image]: https://img.shields.io/travis/eggjs/egg-kafka-wrapper.svg?style=flat-square
-[travis-url]: https://travis-ci.org/eggjs/egg-kafka-wrapper
-[codecov-image]: https://img.shields.io/codecov/c/github/eggjs/egg-kafka-wrapper.svg?style=flat-square
-[codecov-url]: https://codecov.io/github/eggjs/egg-kafka-wrapper?branch=master
-[david-image]: https://img.shields.io/david/eggjs/egg-kafka-wrapper.svg?style=flat-square
-[david-url]: https://david-dm.org/eggjs/egg-kafka-wrapper
-[snyk-image]: https://snyk.io/test/npm/egg-kafka-wrapper/badge.svg?style=flat-square
-[snyk-url]: https://snyk.io/test/npm/egg-kafka-wrapper
-[download-image]: https://img.shields.io/npm/dm/egg-kafka-wrapper.svg?style=flat-square
-[download-url]: https://npmjs.org/package/egg-kafka-wrapper
-
 ## Description
-Wrapper for 'npm kafka-node', fork from 'npm egg-kafka'
+Kafka plugin for [eggjs](https://eggjs.org/)
+
+Just a wrapper of [kafka-node](https://github.com/SOHU-Co/kafka-node), and fork from [egg-kafka](https://github.com/ntfs32/egg-kafka)
 
 ## Install
-
+So far, this plugin is not publish to npm yet, user need to download the source code from git, then:
 ```bash
-$ npm i egg-kafka-wrapper --save
+$ cp egg-kafka-wrapper {app_root}/lib/plugin/egg-kafka-wrapper
 ```
+
+`app_root` presents your egg project code dir
 
 ## Usage
 
 ```js
 // {app_root}/config/plugin.js
-exports.kafka = {
+exports.kafkaWrapper = {
   enable: true,
-  package: 'egg-kafka-wrapper',
+  path: path.join(__dirname, '../lib/plugin/egg-kafka-wrapper'),
 };
 ```
 
@@ -44,18 +28,65 @@ exports.kafka = {
 ```js
 // {app_root}/config/config.default.js
 exports.kafka = {
+  client: {
+    enableClient: 'kafkaClient',
+    kafkaClient: {
+      kafkaHost: '127.0.0.1:9092',
+    },
+  },
 };
 ```
 
-see [config/config.default.js](config/config.default.js) for more detail.
+see [config/config.default.js](https://github.com/terrencewei/egg-kafka-wrapper/blob/master/config/config.default.js) for more detail.
 
 ## Example
+### Producer
 
-<!-- example here -->
+```js
+async publish() {
+  const producer = this.kafka.producer;
+  
+  const topics = [
+    {
+      topic: 'CAR_NUMBER',
+      messages: 'buy 1 car',
+      partition: 0,
+    },
+  ]
+  
+  await producer.sendAsync(topics);
+}
+````
+
+### Consumer
+
+```js
+async subscribe() {
+  const app = this.app;
+  
+  const topics = [
+    { topic: 'CAR_NUMBER', partition: 0 },
+  ]
+  
+  const options = {
+    autoCommit: true,
+  }
+  
+  const consumer = await app.kafka.createConsumer(topics, options);
+  
+  consumer.on('message', function(message) {
+    // handle message
+  });
+}
+
+```
+
+### More
+see [kafka-node](https://github.com/SOHU-Co/kafka-node/blob/master/README.md) for more detail.
 
 ## Questions & Suggestions
 
-Please open an issue [here](https://github.com/eggjs/egg/issues).
+Please open an issue [here](https://github.com/terrencewei/egg-kafka-wrapper/issues).
 
 ## License
 
