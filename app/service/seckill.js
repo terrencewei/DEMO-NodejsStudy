@@ -21,7 +21,14 @@ class SeckillService extends Service {
       if (results != null) {
         // means no conflict, counter has been decreased
         // then produce a message via kafka to real decrease the stock in mysql DB
-        const res = await this.app.kafkaNodeBasic.sendAsync()
+        const topics = [
+          {
+            topic: 'CAR_NUMBER',
+            messages: 'buy 1 car',
+            partition: 0
+          }
+        ]
+        const res = await this.app.kafkaNode.sendAsync(topics)
         console.log(res)
         return results[0][1]
       } else {

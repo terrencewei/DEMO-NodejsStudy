@@ -1,9 +1,9 @@
 {
-  "name": "egg-kafka-node-basic",
+  "name": "egg-kafka-node",
   "version": "1.0.0",
   "description": "A basic wrapper of 'npm kafka-node' for eggjs",
   "eggPlugin": {
-    "name": "kafkaNodeBasic"
+    "name": "kafkaNode"
   },
   "keywords": [
     "egg",
@@ -47,12 +47,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eggjs/egg-kafka-node-basic.git"
+    "url": "git+https://github.com/eggjs/egg-kafka-node.git"
   },
   "bugs": {
     "url": "https://github.com/eggjs/egg/issues"
   },
-  "homepage": "https://github.com/eggjs/egg-kafka-node-basic#readme",
+  "homepage": "https://github.com/eggjs/egg-kafka-node#readme",
   "author": "Terrence Wei",
   "license": "MIT"
 }

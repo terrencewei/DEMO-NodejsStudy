@@ -14,7 +14,7 @@ exports.redis = {
   package: 'egg-redis'
 }
 
-exports.kafkaNodeBasic = {
+exports.kafkaNode = {
   enable: true,
-  path: path.join(__dirname, '../lib/plugin/egg-kafka-node-basic')
+  path: path.join(__dirname, '../lib/plugin/egg-kafka-node')
 }
