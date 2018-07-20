@@ -1,20 +1,20 @@
-'use strict'
+'use strict';
 
 module.exports = appInfo => {
-  const config = exports = {}
+  const config = exports = {};
 
   // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1531883373332_1104'
+  config.keys = appInfo.name + '_1531883373332_1104';
 
   // add your config here
-  config.middleware = []
+  config.middleware = [];
 
   config.view = {
     defaultViewEngine: 'nunjucks',
     mapping: {
-      '.tpl': 'nunjucks'
-    }
-  }
+      '.tpl': 'nunjucks',
+    },
+  };
 
   config.redis = {
     client: {
@@ -22,14 +22,18 @@ module.exports = appInfo => {
       host: '127.0.0.1',
       // password: 'auth',
       password: null,
-      db: 0
-    }
-  }
+      db: 0,
+    },
+  };
 
-  config.kafkaNode = {
-    kafkaHost: '127.0.0.1:9092',
-    app: true
-  }
+  config.kafka = {
+    client: {
+      enableClient: 'kafkaClient',
+      kafkaClient: {
+        kafkaHost: '127.0.0.1:9092',
+      },
+    },
+  };
 
-  return config
-}
+  return config;
+};
