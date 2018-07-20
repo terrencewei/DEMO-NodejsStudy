@@ -1,14 +1,14 @@
-# cd egg-example
-
-npm i
-
+## TODO
+- [ ] readme
+- [ ] test codes
+- [ ] error handling
+- [ ] comments
+- [ ] business improvement: [refers](https://gitee.com/52itstyle/spring-boot-seckill)
+- [ ] lib/plugin/egg-kafka-wrapper readme
+- [ ] lib/plugin/egg-kafka-wrapper test codes
+- [ ] lib/plugin/egg-kafka-wrapper error handling
+- [ ] lib/plugin/egg-kafka-wrapper comments
 ## QuickStart
-
-<!-- add docs here for user -->
-
-see [egg docs][egg] for more detail.
-
-### Development
 
 ```bash
 $ npm i
@@ -16,18 +16,3 @@ $ npm run dev
 $ open http://localhost:7001/
 ```
 
-### Deploy
-
-```bash
-$ npm start
-$ npm stop
-```
-
-### npm scripts
-
-- Use `npm run lint` to check code style.
-- Use `npm test` to run unit test.
-- Use `npm run autod` to auto detect dependencies upgrade, see [autod](https://www.npmjs.com/package/autod) for more detail.
-
-
-[egg]: https://eggjs.org

@@ -14,7 +14,12 @@ exports.redis = {
   package: 'egg-redis',
 };
 
-exports.kafka = {
+exports.mysql = {
   enable: true,
-  path: path.join(__dirname, '../lib/plugin/egg-kafka'),
+  package: 'egg-mysql',
+};
+
+exports.kafkaWrapper = {
+  enable: true,
+  path: path.join(__dirname, '../lib/plugin/egg-kafka-wrapper'),
 };

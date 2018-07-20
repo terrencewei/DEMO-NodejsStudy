@@ -6,11 +6,14 @@ module.exports = app => {
 
   app.beforeStart(async () => {
     const ctx = app.createAnonymousContext();
-    await ctx.service.kafka.subscribe();
-    this.ctx = ctx;
+    const kafkaService = ctx.service.kafka;
+
+    await kafkaService.subscribe();
+
+    this.kafkaService = kafkaService;
   });
 
   app.beforeClose(async () => {
-    await this.ctx.service.kafka.end();
+    await this.kafkaService.end();
   });
 };

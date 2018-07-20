@@ -5,41 +5,37 @@ const Service = require('egg').Service;
 
 class SeckillService extends Service {
 
-  async buy() {
-    const res = await this.consumeStockInRedis();
-    return res;
-  }
 
-  async consumeStockInRedis(redis) {
+  async buy(redis) {
     const app = this.app;
+    const redisService = this.ctx.service.redis;
+    const kafkaService = this.ctx.service.kafka;
+
     if (redis == null || redis === 'undefined') {
       redis = await app.redis.createInstanceAsync(app.config.redis.client);
     }
-    redis.watch('counter');
-    const stock = await redis.get('counter');
+    const stock = await redisService.getStock(redis);
     if (stock <= 0) {
       return 'Non stock!';
     }
-    const results = await redis.multi().decr('counter').exec();
+    const results = await redisService.updateStock(redis);
     if (results != null) {
-      // means no conflict, counter has been decreased
-      // const topics = [
-      //   {
-      //     topic: 'CAR_NUMBER',
-      //     messages: 'buy 1 car',
-      //     partition: 0,
-      //   },
-      // ];
-      // const producer = app.kafka.producer;
-      // await producer.sendAsync(topics);
-      await this.ctx.service.kafka.publish();
+      await kafkaService.publish();
       return results[0][1];
     }
-    const res = await this.consumeStockInRedis(redis);
+    const res = await this.buy(redis);
     return res;
-
-
   }
+
+  async get() {
+    const redisService = this.ctx.service.redis;
+    const mysqlService = this.ctx.service.mysql;
+    const redisStock = await redisService.getStock();
+    const mysqlStock = await mysqlService.getStock();
+
+    return { redisStock, mysqlStock };
+  }
+
 }
 
 module.exports = SeckillService;
