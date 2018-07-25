@@ -16,7 +16,7 @@ This project is based on [Nodejs](https://nodejs.org/), using [Eggjs](https://eg
 
 ## Overall Architecture
 
-![](./docs/img/Overall-architectureOverall-architecture.jpg)
+![image](./docs/img/Overall-architecture.jpg)
 
 ## QuickStart
 ```bash
