@@ -1,5 +1,3 @@
-[TOC]
-
 # Node study
 This project is to verify second kill technique with [Nodejs](https://nodejs.org/), [Eggjs](https://eggjs.org/), [Apache Kafka](https://kafka.apache.org/), [Redis](https://redis.io/) and [MySQL](https://www.mysql.com/)
 
