@@ -28,7 +28,9 @@ class SeckillController extends Controller {
   async get() {
     const ctx = this.ctx;
     const result = await ctx.service.seckill.get();
-    await ctx.render('seckill/result.tpl', { res: result });
+    ctx.body = await ctx.renderString('redisStock:{{ redisStock }}, mysqlStock:{{ mysqlStock }}', result, {
+      viewEngine: 'nunjucks',
+    });
   }
 
 

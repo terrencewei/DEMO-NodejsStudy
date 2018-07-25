@@ -1,6 +1,6 @@
 <html>
 <head>
-    <script src="/public/js/jquery-1.9.1.min.js"></script>
+    <script src="/public/js/lib/jquery-1.9.1.min.js"></script>
     <head>
 <body>
 <div>

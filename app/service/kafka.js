@@ -45,6 +45,9 @@ class KafkaService extends Service {
     const app = this.app;
     // close kafka consumer
     this.consumer.close(true, function(err) {
+      if (err) {
+        throw err;
+      }
       app.logger.info('[app/service/kafka/end] kafka consumer is closed');
     });
   }
