@@ -20,11 +20,20 @@ This project is based on [Nodejs](https://nodejs.org/), using [Eggjs](https://eg
 
 ## QuickStart
 ```bash
-* docker-compose up -d
+$ docker-compose up -d
 $ npm i
 $ npm run dev
 $ open http://localhost:7001/
 ```
+### Home page
+![image](./docs/img/homepage.png)
+
+* Page initialization, will call '/seckill/get' API
+
+* Click 'Init' button will call '/seckill/init' API then refresh page
+
+* Click 'Buy' button will call '/seckill/buy' API then refresh page
+    * Because of Kafka message consume delay, the stock in MySQL will not increased immediately, so maybe the auto-refresh will not show the real stock in MySQL, in this case, user can refresh this page again then will see the real stock in MySQL 
 
 ## Installation Dependencies Check
 
