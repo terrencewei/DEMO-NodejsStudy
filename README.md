@@ -1,4 +1,4 @@
-# Node study
+# Nodejs Study Simple APP
 This project is to verify second kill technique with [Nodejs](https://nodejs.org/), [Eggjs](https://eggjs.org/), [Apache Kafka](https://kafka.apache.org/), [Redis](https://redis.io/) and [MySQL](https://www.mysql.com/)
 
 ## What we are building
@@ -142,3 +142,7 @@ $ npm test
 - [ ] Business improvement of app/service/seckill.js
 - [ ] Error handing of rest API
 - [ ] More comments
+
+## Other branch
+1-express Verify express framework
+2-egg same as master
